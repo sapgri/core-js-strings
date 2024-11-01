@@ -38,10 +38,9 @@ function getStringLength(value) {
  *   isString(new String('test')) => true
  */
 function isString(value) {
-  if (value === null || value === undefined) {
-    return false;
-  }
-  return typeof value.valueOf() === 'string';
+  return value === null || value === undefined
+    ? false
+    : typeof value.valueOf() === 'string';
 }
 
 /**
@@ -101,8 +100,8 @@ function removeLeadingAndTrailingWhitespaces(value) {
  *   removeLeadingWhitespaces('cat ') => 'cat '
  *   removeLeadingWhitespaces('\t\t\tHello, World! ') => 'Hello, World! '
  */
-function removeLeadingWhitespaces(/* value */) {
-  throw new Error('Not implemented');
+function removeLeadingWhitespaces(value) {
+  return value.trimStart();
 }
 
 /**
@@ -116,8 +115,8 @@ function removeLeadingWhitespaces(/* value */) {
  *   removeTrailingWhitespaces('cat ') => 'cat'
  *   removeTrailingWhitespaces('\t\t\tHello, World! ') => '\t\t\tHello, World!'
  */
-function removeTrailingWhitespaces(/* value */) {
-  throw new Error('Not implemented');
+function removeTrailingWhitespaces(value) {
+  return value.trimEnd();
 }
 
 /**
@@ -133,8 +132,8 @@ function removeTrailingWhitespaces(/* value */) {
  *   repeatString('', 3) => ''
  *   repeatString('abc', -2) => ''
  */
-function repeatString(/* str, times */) {
-  throw new Error('Not implemented');
+function repeatString(str, times) {
+  return times < 0 ? '' : str.repeat(times) || '';
 }
 
 /**
@@ -196,8 +195,8 @@ function sumOfCodes(/* str */) {
  *   startsWith('Hello World', 'World') => false
  *   startsWith('Hello World', 'Hello') => true
  */
-function startsWith(/* str, substr */) {
-  throw new Error('Not implemented');
+function startsWith(str, substr) {
+  return str.startsWith(substr);
 }
 
 /**
