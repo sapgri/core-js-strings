@@ -180,8 +180,8 @@ function removeLastOccurrences(/* str, value */) {
  *   sumOfCodes('') => 0
  *   sumOfCodes() => 0
  */
-function sumOfCodes(/* str */) {
-  throw new Error('Not implemented');
+function sumOfCodes(str) {
+  return str ? [...str].reduce((sum, char) => sum + char.charCodeAt(0), 0) : 0;
 }
 
 /**
@@ -292,8 +292,8 @@ function containsSubstring(str, substring) {
  *   countVowels('aEiOu') => 5
  *   countVowels('XYZ') => 1
  */
-function countVowels(/* str */) {
-  throw new Error('Not implemented');
+function countVowels(str) {
+  return str.split('').filter((l) => 'aeiouyAEIOUY'.includes(l)).length;
 }
 
 /**
@@ -309,8 +309,11 @@ function countVowels(/* str */) {
  *   isPalindrome('apple') => false
  *   isPalindrome('No lemon, no melon') => true
  */
-function isPalindrome(/* str */) {
-  throw new Error('Not implemented');
+function isPalindrome(str) {
+  return (
+    [...str.replace(/\W/g, '')].reverse().join('').toLowerCase() ===
+    str.replace(/\W/g, '').toLowerCase()
+  );
 }
 
 /**
@@ -325,8 +328,15 @@ function isPalindrome(/* str */) {
  *   findLongestWord('A long and winding road') => 'winding'
  *   findLongestWord('No words here') => 'words'
  */
-function findLongestWord(/* sentence */) {
-  throw new Error('Not implemented');
+function findLongestWord(sentence) {
+  let longestWord = '';
+  sentence.split(/\s/).forEach((word) => {
+    if (word.length > longestWord.length) {
+      longestWord = word;
+    }
+  });
+
+  return longestWord;
 }
 
 /**
@@ -339,8 +349,11 @@ function findLongestWord(/* sentence */) {
  *   reverseWords('Hello World') => 'olleH dlroW'
  *   reverseWords('The Quick Brown Fox') => 'ehT kciuQ nworB xoF'
  */
-function reverseWords(/* str */) {
-  throw new Error('Not implemented');
+function reverseWords(str) {
+  return str
+    .split(' ')
+    .map((word) => word.split('').reverse().join(''))
+    .join(' ');
 }
 
 /**
@@ -354,8 +367,12 @@ function reverseWords(/* str */) {
  *   invertCase('JavaScript is Fun') => 'jAVAsCRIPT IS fUN'
  *   invertCase('12345') => '12345'
  */
-function invertCase(/* str */) {
-  throw new Error('Not implemented');
+function invertCase(str) {
+  return [...str]
+    .map((char) =>
+      char.toUpperCase() === char ? char.toLowerCase() : char.toUpperCase()
+    )
+    .join('');
 }
 
 /**
