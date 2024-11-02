@@ -149,7 +149,10 @@ function repeatString(str, times) {
  *   removeFirstOccurrences('ABABAB', 'BA') => 'ABAB'.
  */
 function removeFirstOccurrences(str, value) {
-  return str.replace(value, '');
+  const valuePosition = str.indexOf(value);
+  return valuePosition >= 0
+    ? str.slice(0, valuePosition) + str.slice(valuePosition + value.length)
+    : str;
 }
 
 /**
@@ -165,10 +168,10 @@ function removeFirstOccurrences(str, value) {
  *   removeLastOccurrences('ABABAB', 'BA') => 'ABAB'.
  */
 function removeLastOccurrences(str, value) {
-  return (
-    str.slice(0, str.lastIndexOf(value)) +
-    str.slice(str.lastIndexOf(value)).replace(value, '')
-  );
+  const valuePosition = str.lastIndexOf(value);
+  return valuePosition >= 0
+    ? str.slice(0, valuePosition) + str.slice(valuePosition + value.length)
+    : str;
 }
 
 /**
@@ -463,8 +466,20 @@ function extractEmails(str) {
  *    => 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm'
  *
  */
-function encodeToRot13(/* str */) {
-  throw new Error('Not implemented');
+function encodeToRot13(str) {
+  const key = 'abcdefghijklmnopqrstuvwxyz';
+  let res = '';
+  [...str].forEach((item) => {
+    if (key.includes(item.toLowerCase())) {
+      res +=
+        item.toLowerCase() === item
+          ? key[(key.indexOf(item) + 13) % 26]
+          : key[(key.indexOf(item.toLowerCase()) + 13) % 26].toUpperCase();
+    } else {
+      res += item;
+    }
+  });
+  return res;
 }
 
 /**
